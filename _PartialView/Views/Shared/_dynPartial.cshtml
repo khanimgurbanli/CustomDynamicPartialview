@@ -1,0 +1,25 @@
+﻿@model Object
+
+@if (Model is IEnumerable<Object>)
+{
+    @foreach (var model in (IEnumerable<Object>)Model)
+    {
+        @foreach (var item in model.GetType().GetProperties())
+        {
+            <form>
+                <label>@item.Name</label>
+                <input class="form-control valid" type="text" value="@item.GetValue(model)" aria-invalid="false">
+            </form>
+        }
+    }
+}
+else
+{
+    @foreach (var item in Model.GetType().GetProperties())
+    {
+        <form>
+            <label>@item.Name</label>
+            <input class="form-control valid" type="text" value="@item.GetValue(Model)" aria-invalid="false">
+        </form>
+    }
+}
